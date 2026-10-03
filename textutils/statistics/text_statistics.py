@@ -1,14 +1,32 @@
 import re
+import string
 
-def text_statistics(text):
-    """
-    Calculate statistics about a text.
+def text_statistics(text: str) -> dict[str, int | float | str | None]:
+    """Calculate statistics about ``text``.
+
+    The statistics include character, word, sentence, word length,
+    and word frequency information.
 
     Args:
-    text (str): The text to analyze.
+        text: The text to analyze.
 
     Returns:
-    dict: A dictionary containing the statistics of the text.
+        A dictionary containing the statistics of the text.
+
+    Example:
+        >>> text_statistics("The cat and the dog. The end!")
+        {
+            'characters': 29,
+            'characters_no_spaces': 23,
+            'words': 7,
+            'unique_words': 5,
+            'sentences': 2,
+            'average_word_length': 3.0,
+            'shortest_word': 'and',
+            'longest_word': 'and',
+            'most_frequent_word': 'the',
+            'most_frequent_count': 3
+        }
     """
     characters = len(text)
     
@@ -16,11 +34,15 @@ def text_statistics(text):
     for i in range(len(text)):
         if text[i] != " ":
             characters_no_spaces += 1
-            
-    words = len(text.split())
     
-    normalized_text = text.replace(".", " ").replace("!", " ").replace("?", " ").replace(",", " ").replace(";", " ")
-    normalized_words = normalized_text.lower().split()
+    normalized_words = []
+
+    for word in text.lower().split():
+        normalized_word = word.strip(string.punctuation)
+        if normalized_word != "":
+            normalized_words.append(normalized_word)
+            
+    words = len(normalized_words)        
     unique_words = len(set(normalized_words))
     
     all_sentences = re.split(r'[.!?]+', text)
@@ -35,7 +57,7 @@ def text_statistics(text):
     
     if words != 0: 
         average_word_length = characters_words / words
-    else :
+    else:
         average_word_length = 0.0
     
     if len(normalized_words) != 0:   
@@ -74,8 +96,6 @@ def text_statistics(text):
             number_by_word[word] += 1
         else:
             number_by_word[word] = 1
-            
-    
 
     most_frequent_word = None
     most_frequent_count = 0
