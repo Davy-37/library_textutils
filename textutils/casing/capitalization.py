@@ -1,4 +1,4 @@
-"""Functions that change the casing of a text."""
+"""Capitalization helpers."""
 
 
 def capitalize_words(text: str) -> str:

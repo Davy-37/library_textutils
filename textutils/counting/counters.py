@@ -1,4 +1,4 @@
-"""Functions that count or transform the content of a text."""
+"""Word and character counters."""
 
 
 def word_count(text: str) -> int:
@@ -33,19 +33,3 @@ def character_count(text: str) -> int:
         5
     """
     return len(text)
-
-
-def reverse(text: str) -> str:
-    """Reverse ``text``.
-
-    Args:
-        text: The text to reverse.
-
-    Returns:
-        The text with its characters in reverse order.
-
-    Example:
-        >>> reverse("abc")
-        'cba'
-    """
-    return text[::-1]
