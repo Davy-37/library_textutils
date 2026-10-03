@@ -8,6 +8,7 @@ A lightweight Python library for common text-processing operations.
 - Character counting
 - Text reversal
 - Word capitalization
+- Text statistics
 
 ## Installation
 
