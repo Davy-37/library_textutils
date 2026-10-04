@@ -50,8 +50,8 @@ def snake_case(text):
         or whitespace-only text returns an empty string.
 
     Example:
-        >>> snake_case("Hello Open Source!")
-        'hello_open_source'
+        >>> snake_case("User Profile Settings")
+        'user_profile_settings'
         >>> snake_case("parseHTTPResponse")
         'parse_http_response'
     """
