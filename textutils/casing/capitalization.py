@@ -11,7 +11,7 @@ def capitalize_words(text: str) -> str:
         The text with each word capitalized and the rest lowercased.
 
     Example:
-        >>> capitalize_words("hello open source")
-        'Hello Open Source'
+        >>> capitalize_words("the quick brown fox")
+        'The Quick Brown Fox'
     """
     return " ".join(word.capitalize() for word in text.split(" "))

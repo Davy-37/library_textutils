@@ -13,8 +13,8 @@ def word_count(text: str) -> int:
         The number of words.
 
     Example:
-        >>> word_count("Hello Open Source!")
-        3
+        >>> word_count("The quick brown fox jumps")
+        5
     """
     return len(text.split())
 
