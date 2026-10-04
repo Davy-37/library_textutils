@@ -33,3 +33,26 @@ def _split_words(text):
         list[str]: The words of the text, without any separator.
     """
     return _WORD.findall(_split_camel_case(text))
+
+
+def snake_case(text):
+    """
+    Convert a text to snake case.
+
+    Words may be separated by spaces, hyphens, underscores or camelCase
+    boundaries. Punctuation is removed and repeated separators are collapsed.
+
+    Args:
+        text (str): The text to convert.
+
+    Returns:
+        str: The text in lowercase, with words joined by underscores. An empty
+        or whitespace-only text returns an empty string.
+
+    Example:
+        >>> snake_case("Hello Open Source!")
+        'hello_open_source'
+        >>> snake_case("parseHTTPResponse")
+        'parse_http_response'
+    """
+    return "_".join(word.lower() for word in _split_words(text))
