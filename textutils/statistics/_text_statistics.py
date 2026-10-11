@@ -1,3 +1,5 @@
+
+from textutils._validation import ensure_text
 import re
 import string
 
@@ -28,6 +30,7 @@ def text_statistics(text: str) -> dict[str, int | float | str | None]:
             'most_frequent_count': 3
         }
     """
+    ensure_text(text)
     characters = len(text)
     
     characters_no_spaces = 0
