@@ -1,5 +1,7 @@
 """Word and character counters."""
 
+from textutils._validation import ensure_text
+
 
 def word_count(text: str) -> int:
     """Count the words in ``text``.
@@ -16,6 +18,7 @@ def word_count(text: str) -> int:
         >>> word_count("The quick brown fox jumps")
         5
     """
+    ensure_text(text)
     return len(text.split())
 
 
@@ -32,4 +35,5 @@ def character_count(text: str) -> int:
         >>> character_count("Hello")
         5
     """
+    ensure_text(text)
     return len(text)
