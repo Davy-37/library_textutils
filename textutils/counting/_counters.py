@@ -4,36 +4,58 @@ from textutils._validation import ensure_text
 
 
 def word_count(text: str) -> int:
-    """Count the words in ``text``.
+    """Count the number of words in a string.
 
     Words are sequences of characters separated by whitespace.
 
-    Args:
-        text: The text to analyze.
+    Parameters
+    ----------
+    text : str
+        Input text whose words are counted.
 
-    Returns:
-        The number of words.
+    Returns
+    -------
+    int
+        Number of words in the input text.
 
-    Example:
-        >>> word_count("The quick brown fox jumps")
-        5
+    Raises
+    ------
+    TypeError
+        If `text` is not a string.
+
+    Examples
+    --------
+    >>> word_count("The quick brown fox jumps")
+    5
+    >>> word_count("")
+    0
     """
     ensure_text(text)
     return len(text.split())
 
 
 def character_count(text: str) -> int:
-    """Count the characters in ``text``, spaces included.
+    """Count the number of characters in a string, spaces included.
 
-    Args:
-        text: The text to analyze.
+    Parameters
+    ----------
+    text : str
+        Input text whose characters are counted.
 
-    Returns:
-        The number of characters.
+    Returns
+    -------
+    int
+        Number of characters in the input text.
 
-    Example:
-        >>> character_count("Hello")
-        5
+    Raises
+    ------
+    TypeError
+        If `text` is not a string.
+
+    Examples
+    --------
+    >>> character_count("quick fox")
+    9
     """
     ensure_text(text)
     return len(text)
