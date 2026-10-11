@@ -86,31 +86,48 @@ def _most_frequent(words: list[str]) -> tuple[str | None, int]:
 
 
 def text_statistics(text: str) -> dict[str, int | float | str | None]:
-    """Calculate statistics about ``text``.
+    """Calculate statistics about a string.
 
-    The statistics include character, word, sentence, word length,
-    and word frequency information.
+    Words are lowercased and stripped of surrounding punctuation. Ties for the
+    shortest, longest and most frequent word are broken alphabetically.
 
-    Args:
-        text: The text to analyze.
+    Parameters
+    ----------
+    text : str
+        Input text to analyze.
 
-    Returns:
-        A dictionary containing the statistics of the text.
+    Returns
+    -------
+    dict
+        Statistics of the text with the following keys:
 
-    Example:
-        >>> text_statistics("The cat and the dog. The end!")
-        {
-            'characters': 29,
-            'characters_no_spaces': 23,
-            'words': 7,
-            'unique_words': 5,
-            'sentences': 2,
-            'average_word_length': 3.0,
-            'shortest_word': 'and',
-            'longest_word': 'and',
-            'most_frequent_word': 'the',
-            'most_frequent_count': 3
-        }
+        - ``characters`` (int): number of characters.
+        - ``characters_no_spaces`` (int): number of characters, spaces excluded.
+        - ``words`` (int): number of words.
+        - ``unique_words`` (int): number of distinct words.
+        - ``sentences`` (int): number of sentences.
+        - ``average_word_length`` (float): average length of the words.
+        - ``shortest_word`` (str or None): shortest word.
+        - ``longest_word`` (str or None): longest word.
+        - ``most_frequent_word`` (str or None): most frequent word.
+        - ``most_frequent_count`` (int): occurrences of the most frequent word.
+
+        Word fields are ``None`` and counts are ``0`` for an empty text.
+
+    Raises
+    ------
+    TypeError
+        If `text` is not a string.
+
+    Examples
+    --------
+    >>> stats = text_statistics("The cat and the dog. The end!")
+    >>> stats["words"], stats["sentences"]
+    (7, 2)
+    >>> stats["most_frequent_word"], stats["most_frequent_count"]
+    ('the', 3)
+    >>> text_statistics("")["shortest_word"] is None
+    True
     """
     ensure_text(text)
     words = _normalize_words(text)
