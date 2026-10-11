@@ -1,7 +1,89 @@
+"""Statistics about a text."""
 
-from textutils._validation import ensure_text
 import re
 import string
+from collections import Counter
+
+from textutils._validation import ensure_text
+
+_SENTENCE_END = re.compile(r"[.!?]+")
+
+
+def _normalize_words(text: str) -> list[str]:
+    """Split a text into lowercase words without surrounding punctuation.
+
+    Parameters
+    ----------
+    text : str
+        Text to split.
+
+    Returns
+    -------
+    list of str
+        The normalized words, in order of appearance. Words made only of
+        punctuation are dropped.
+    """
+    words = (word.strip(string.punctuation) for word in text.lower().split())
+    return [word for word in words if word]
+
+
+def _count_sentences(text: str) -> int:
+    """Count the sentences of a text.
+
+    Sentences end with ``.``, ``!`` or ``?``; consecutive marks count once and
+    empty fragments are ignored.
+
+    Parameters
+    ----------
+    text : str
+        Text to analyze.
+
+    Returns
+    -------
+    int
+        Number of sentences.
+    """
+    return sum(1 for part in _SENTENCE_END.split(text) if part.strip())
+
+
+def _average_length(words: list[str]) -> float:
+    """Compute the average length of a list of words.
+
+    Parameters
+    ----------
+    words : list of str
+        Words to measure.
+
+    Returns
+    -------
+    float
+        Average word length, or ``0.0`` when there is no word.
+    """
+    if not words:
+        return 0.0
+    return sum(len(word) for word in words) / len(words)
+
+
+def _most_frequent(words: list[str]) -> tuple[str | None, int]:
+    """Find the most frequent word.
+
+    Parameters
+    ----------
+    words : list of str
+        Words to analyze.
+
+    Returns
+    -------
+    tuple of (str or None, int)
+        The most frequent word and its number of occurrences. Ties are broken
+        alphabetically. ``(None, 0)`` is returned when there is no word.
+    """
+    if not words:
+        return None, 0
+    counts = Counter(words)
+    word = min(counts, key=lambda candidate: (-counts[candidate], candidate))
+    return word, counts[word]
+
 
 def text_statistics(text: str) -> dict[str, int | float | str | None]:
     """Calculate statistics about ``text``.
@@ -31,97 +113,18 @@ def text_statistics(text: str) -> dict[str, int | float | str | None]:
         }
     """
     ensure_text(text)
-    characters = len(text)
-    
-    characters_no_spaces = 0
-    for i in range(len(text)):
-        if text[i] != " ":
-            characters_no_spaces += 1
-    
-    normalized_words = []
+    words = _normalize_words(text)
+    most_frequent_word, most_frequent_count = _most_frequent(words)
 
-    for word in text.lower().split():
-        normalized_word = word.strip(string.punctuation)
-        if normalized_word != "":
-            normalized_words.append(normalized_word)
-            
-    words = len(normalized_words)        
-    unique_words = len(set(normalized_words))
-    
-    all_sentences = re.split(r'[.!?]+', text)
-    sentences = 0
-    for i in range(len(all_sentences)):
-        if all_sentences[i].strip() != "":
-            sentences += 1
-
-    characters_words = 0
-    for i in range(len(normalized_words)):
-        characters_words += len(normalized_words[i])
-    
-    if words != 0: 
-        average_word_length = characters_words / words
-    else:
-        average_word_length = 0.0
-    
-    if len(normalized_words) != 0:   
-        characters_shortest_word = len(normalized_words[0])
-        shortest_word = normalized_words[0]
-        for i in range(1,len(normalized_words)):
-            if characters_shortest_word > len(normalized_words[i]):
-                characters_shortest_word = len(normalized_words[i])
-                shortest_word = normalized_words[i]
-                
-            if characters_shortest_word == len(normalized_words[i]):
-                if shortest_word > normalized_words[i]:
-                    characters_shortest_word = len(normalized_words[i])
-                    shortest_word = normalized_words[i]
-    else:
-        shortest_word = None
-        
-    if len(normalized_words) != 0:   
-        characters_longest_word = len(normalized_words[0])
-        longest_word = normalized_words[0]
-        for i in range(1,len(normalized_words)):
-            if characters_longest_word < len(normalized_words[i]):
-                characters_longest_word = len(normalized_words[i])
-                longest_word = normalized_words[i]
-                
-            if characters_longest_word == len(normalized_words[i]):
-                if longest_word > normalized_words[i]:
-                    characters_longest_word = len(normalized_words[i])
-                    longest_word = normalized_words[i]
-    else:
-        longest_word = None
-    
-    number_by_word = {}
-    for word in normalized_words:
-        if word in number_by_word:
-            number_by_word[word] += 1
-        else:
-            number_by_word[word] = 1
-
-    most_frequent_word = None
-    most_frequent_count = 0
-    for word in number_by_word:
-        if most_frequent_count < number_by_word[word]:
-            most_frequent_word = word
-            most_frequent_count = number_by_word[word]
-        if most_frequent_count == number_by_word[word]:
-            if most_frequent_word > word:
-                most_frequent_word = word
-                most_frequent_count = number_by_word[word]
-                
-    result = {
-        "characters": characters,
-        "characters_no_spaces": characters_no_spaces,
-        "words": words,
-        "unique_words": unique_words,
-        "sentences": sentences,
-        "average_word_length": average_word_length,
-        "shortest_word": shortest_word,
-        "longest_word": longest_word,
+    return {
+        "characters": len(text),
+        "characters_no_spaces": sum(1 for char in text if char != " "),
+        "words": len(words),
+        "unique_words": len(set(words)),
+        "sentences": _count_sentences(text),
+        "average_word_length": _average_length(words),
+        "shortest_word": min(words, key=lambda word: (len(word), word), default=None),
+        "longest_word": min(words, key=lambda word: (-len(word), word), default=None),
         "most_frequent_word": most_frequent_word,
-        "most_frequent_count": most_frequent_count
+        "most_frequent_count": most_frequent_count,
     }
-    
-    return result
