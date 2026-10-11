@@ -1,5 +1,7 @@
 """Case conversion helpers."""
 
+from textutils._validation import ensure_text
+
 import re
 
 _CAMEL_BOUNDARY = re.compile(r"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])")
@@ -55,4 +57,5 @@ def snake_case(text):
         >>> snake_case("parseHTTPResponse")
         'parse_http_response'
     """
+    ensure_text(text)
     return "_".join(word.lower() for word in _split_words(text))
