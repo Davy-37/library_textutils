@@ -1,5 +1,7 @@
 """Text reversal helpers."""
 
+from textutils._validation import ensure_text
+
 
 def reverse(text: str) -> str:
     """Reverse ``text``.
@@ -14,4 +16,5 @@ def reverse(text: str) -> str:
         >>> reverse("abc")
         'cba'
     """
+    ensure_text(text)
     return text[::-1]
