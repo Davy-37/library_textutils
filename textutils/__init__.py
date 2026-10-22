@@ -9,7 +9,7 @@ from textutils.transform import reverse
 
 try:
     __version__ = version("textutils-davy")
-except PackageNotFoundError:  # running from a source tree that is not installed
+except PackageNotFoundError:  # pragma: no cover - source tree that is not installed
     __version__ = "unknown"
 
 __all__ = [
