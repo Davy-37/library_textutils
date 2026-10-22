@@ -8,10 +8,28 @@ version = "0.1.0"
 description = "A lightweight Python library for common text-processing operations."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "NZIENGUI Davy" }]
+keywords = ["text", "string", "casing", "statistics", "utilities"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing",
+]
 # textutils only relies on the standard library: no runtime dependency.
 dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Davy-37/library_textutils"
+Issues = "https://github.com/Davy-37/library_textutils/issues"
+Changelog = "https://github.com/Davy-37/library_textutils/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
