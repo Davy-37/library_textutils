@@ -1,5 +1,7 @@
 # textutils
 
+[![CI](https://github.com/Davy-37/library_textutils/actions/workflows/ci.yml/badge.svg)](https://github.com/Davy-37/library_textutils/actions/workflows/ci.yml)
+
 A lightweight Python library for common text-processing operations.
 
 ## Features
@@ -46,9 +48,8 @@ pip install -e ".[dev]"
 Run the checks before opening a pull request:
 
 ```bash
-pytest --cov=textutils    # tests and coverage
-black --check .           # formatting
-ruff check .              # linting
+pytest --cov=textutils      # tests and coverage
+pre-commit run --all-files  # Black, Ruff and file checks
 ```
 
 The public API is exposed by the `__init__.py` files; modules whose name starts
@@ -57,9 +58,9 @@ details and may change without notice.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue to discuss your idea, then
-submit a pull request from a dedicated branch. Make sure that the tests pass
-and that Black and Ruff report no issue.
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md): open
+an issue, work on a dedicated branch and submit a pull request. `main` is
+protected and a pull request is merged only when the CI is green.
 
 ## License
 
