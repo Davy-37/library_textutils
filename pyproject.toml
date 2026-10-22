@@ -38,6 +38,8 @@ dev = [
     "black>=24.0",
     "ruff>=0.6",
     "pre-commit>=3.7",
+    "build>=1.2",
+    "twine>=5.0",
 ]
 
 [tool.setuptools.packages.find]
