@@ -24,6 +24,7 @@ dev = [
 
 [tool.setuptools.packages.find]
 include = ["textutils*"]
+exclude = ["*.tests", "*.tests.*"]
 
 [tool.black]
 line-length = 88
@@ -32,12 +33,13 @@ line-length = 88
 line-length = 88
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "textutils"]
+testpaths = ["textutils"]
 addopts = "--doctest-modules --ignore=build"
 
 [tool.coverage.run]
 branch = true
 source = ["textutils"]
+omit = ["*/tests/*"]
 
 [tool.coverage.report]
 show_missing = true

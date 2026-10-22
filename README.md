@@ -52,6 +52,9 @@ pytest --cov=textutils      # tests and coverage
 pre-commit run --all-files  # Black, Ruff and file checks
 ```
 
+Tests live next to the code they verify, in a `tests/` folder inside each
+submodule (for example `textutils/casing/tests/`).
+
 The public API is exposed by the `__init__.py` files; modules whose name starts
 with an underscore (for example `_snake.py`) are internal implementation
 details and may change without notice.
