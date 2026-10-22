@@ -1,5 +1,6 @@
 # textutils
 
+[![PyPI](https://img.shields.io/pypi/v/textutils-davy)](https://pypi.org/project/textutils-davy/)
 [![CI](https://github.com/Davy-37/library_textutils/actions/workflows/ci.yml/badge.svg)](https://github.com/Davy-37/library_textutils/actions/workflows/ci.yml)
 
 A lightweight Python library for common text-processing operations.
@@ -16,7 +17,16 @@ A lightweight Python library for common text-processing operations.
 ## Installation
 
 ```bash
-pip install textutils
+pip install textutils-davy
+```
+
+The distribution is named `textutils-davy` on PyPI; the import name is
+`textutils`:
+
+```python
+import textutils
+
+print(textutils.__version__)
 ```
 
 ## Usage
