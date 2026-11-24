@@ -42,3 +42,22 @@ jobs:
         with:
           name: dist
           path: dist/
+
+  pypi-publish:
+    name: Publish release to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/textutils-davy
+    permissions:
+      id-token: write
+    steps:
+      - name: Download the distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
