@@ -17,3 +17,18 @@ from textutils import camel_case
 )
 def test_camel_case(text, expected):
     assert camel_case(text) == expected
+
+
+@pytest.mark.parametrize(
+    "text, expected",
+    [
+        ("", ""),
+        ("   ", ""),
+        ("!!!", ""),
+        ("  leading and trailing  ", "leadingAndTrailing"),
+        ("many     spaces", "manySpaces"),
+        ("a--b__c", "aBC"),
+    ],
+)
+def test_camel_case_edge_cases(text, expected):
+    assert camel_case(text) == expected
