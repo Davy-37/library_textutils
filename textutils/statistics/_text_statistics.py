@@ -103,7 +103,7 @@ def text_statistics(text: str) -> dict[str, int | float | str | None]:
         Statistics of the text with the following keys:
 
         - ``characters`` (int): number of characters.
-        - ``characters_no_spaces`` (int): number of characters, spaces excluded.
+        - ``characters_no_spaces`` (int): number of characters, whitespace excluded.
         - ``words`` (int): number of words.
         - ``unique_words`` (int): number of distinct words.
         - ``sentences`` (int): number of sentences.
