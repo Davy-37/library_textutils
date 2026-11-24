@@ -12,6 +12,7 @@ A lightweight Python library for common text-processing operations.
 - Text reversal
 - Word capitalization
 - Snake case conversion
+- Camel case conversion
 - Text statistics
 
 ## Installation
