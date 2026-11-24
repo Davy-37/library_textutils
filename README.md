@@ -44,12 +44,13 @@ print(count)  # 4
 Convert a text to another naming style:
 
 ```python
-from textutils import camel_case, kebab_case, snake_case
+from textutils import camel_case, kebab_case, slugify, snake_case
 
 print(snake_case("User Profile Settings"))  # user_profile_settings
 print(snake_case("parseHTTPResponse"))   # parse_http_response
 print(camel_case("User Profile Settings"))  # userProfileSettings
 print(kebab_case("User Profile Settings"))  # user-profile-settings
+print(slugify("Café crème, déjà vu!"))  # cafe-creme-deja-vu
 ```
 
 ## Development
