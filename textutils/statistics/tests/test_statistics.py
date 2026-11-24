@@ -74,6 +74,11 @@ def test_text_statistics_empty_text_counts():
     assert stats["sentences"] == 0
 
 
+def test_text_statistics_characters_no_spaces_ignores_tabs():
+    """Tabs are whitespace: they are not counted without the spaces."""
+    assert text_statistics("a\tb")["characters_no_spaces"] == 2
+
+
 @pytest.mark.parametrize(
     "text, expected",
     [
