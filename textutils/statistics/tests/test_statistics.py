@@ -82,6 +82,7 @@ def test_text_statistics_empty_text_counts():
         ("Wait... what?!", 2),
         ("No end mark", 1),
         ("...", 0),
+        ("It costs 3.14 euros.", 1),
     ],
 )
 def test_text_statistics_sentences(text, expected):
