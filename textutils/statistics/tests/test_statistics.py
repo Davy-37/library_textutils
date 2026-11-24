@@ -83,6 +83,7 @@ def test_text_statistics_empty_text_counts():
         ("No end mark", 1),
         ("...", 0),
         ("It costs 3.14 euros.", 1),
+        ("Pi is 3.14 today. Ok", 2),
     ],
 )
 def test_text_statistics_sentences(text, expected):
