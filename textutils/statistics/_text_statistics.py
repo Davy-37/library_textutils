@@ -6,7 +6,8 @@ from collections import Counter
 
 from textutils._validation import ensure_text
 
-_SENTENCE_END = re.compile(r"[.!?]+")
+# Sentence-ending marks, except a mark placed between two digits (e.g. "3.14").
+_SENTENCE_END = re.compile(r"(?<!\d)[.!?]+|[.!?]+(?!\d)")
 
 
 def _normalize_words(text: str) -> list[str]:
