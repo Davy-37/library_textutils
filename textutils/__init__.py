@@ -2,7 +2,7 @@
 
 from importlib.metadata import PackageNotFoundError, version
 
-from textutils.casing import camel_case, capitalize_words, snake_case
+from textutils.casing import camel_case, capitalize_words, kebab_case, snake_case
 from textutils.counting import character_count, word_count
 from textutils.statistics import text_statistics
 from textutils.transform import reverse
@@ -16,6 +16,7 @@ __all__ = [
     "camel_case",
     "capitalize_words",
     "character_count",
+    "kebab_case",
     "reverse",
     "snake_case",
     "text_statistics",

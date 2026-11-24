@@ -12,6 +12,7 @@ import textutils
         textutils.capitalize_words,
         textutils.snake_case,
         textutils.camel_case,
+        textutils.kebab_case,
         textutils.text_statistics,
     ],
 )
@@ -31,6 +32,7 @@ def test_public_api_is_exposed_through_the_package():
         "camel_case",
         "capitalize_words",
         "character_count",
+        "kebab_case",
         "reverse",
         "snake_case",
         "text_statistics",
