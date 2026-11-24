@@ -24,6 +24,7 @@ def test_capitalize_words(text, expected):
     [
         ("red\tblue", "Red\tBlue"),
         ("red\nblue\ngreen", "Red\nBlue\nGreen"),
+        ("red \t\n blue", "Red \t\n Blue"),
     ],
 )
 def test_capitalize_words_regression_tabs_and_line_breaks(text, expected):
