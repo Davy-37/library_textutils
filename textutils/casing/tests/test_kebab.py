@@ -16,3 +16,18 @@ from textutils import kebab_case
 )
 def test_kebab_case(text, expected):
     assert kebab_case(text) == expected
+
+
+@pytest.mark.parametrize(
+    "text, expected",
+    [
+        ("", ""),
+        ("   ", ""),
+        ("!!!", ""),
+        ("  leading and trailing  ", "leading-and-trailing"),
+        ("many     spaces", "many-spaces"),
+        ("a--b__c", "a-b-c"),
+    ],
+)
+def test_kebab_case_edge_cases(text, expected):
+    assert kebab_case(text) == expected
