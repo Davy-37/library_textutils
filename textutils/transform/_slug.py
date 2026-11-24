@@ -25,3 +25,41 @@ def _to_ascii(text: str) -> str:
     """
     decomposed = unicodedata.normalize("NFKD", text)
     return decomposed.encode("ascii", "ignore").decode("ascii")
+
+
+def slugify(text: str, separator: str = "-") -> str:
+    """Convert a string to a URL-friendly slug.
+
+    Accented letters are replaced by their ASCII equivalent, the text is
+    lowercased and every group of characters that is not a letter or a digit
+    becomes a single separator. Leading and trailing separators are removed.
+
+    Parameters
+    ----------
+    text : str
+        Input text to convert.
+    separator : str, default="-"
+        String placed between the words of the slug.
+
+    Returns
+    -------
+    str
+        The slug. A text without any letter or digit returns an empty string.
+
+    Raises
+    ------
+    TypeError
+        If `text` or `separator` is not a string.
+
+    Examples
+    --------
+    >>> slugify("Café crème, déjà vu!")
+    'cafe-creme-deja-vu'
+    >>> slugify("Annual  Report 2025", separator="_")
+    'annual_report_2025'
+    """
+    ensure_text(text)
+    if not isinstance(separator, str):
+        raise TypeError(f"separator must be a string, not {type(separator).__name__}")
+    words = _NOT_ALPHANUMERIC.sub(" ", _to_ascii(text).lower()).split()
+    return separator.join(words)
