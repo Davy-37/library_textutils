@@ -14,6 +14,7 @@ A lightweight Python library for common text-processing operations.
 - Snake case conversion
 - Camel case conversion
 - Kebab case conversion
+- URL slug generation
 - Text statistics
 
 ## Installation
