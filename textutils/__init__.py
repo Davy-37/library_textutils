@@ -5,7 +5,7 @@ from importlib.metadata import PackageNotFoundError, version
 from textutils.casing import camel_case, capitalize_words, kebab_case, snake_case
 from textutils.counting import character_count, word_count
 from textutils.statistics import text_statistics
-from textutils.transform import reverse
+from textutils.transform import reverse, slugify
 
 try:
     __version__ = version("textutils-davy")
@@ -18,6 +18,7 @@ __all__ = [
     "character_count",
     "kebab_case",
     "reverse",
+    "slugify",
     "snake_case",
     "text_statistics",
     "word_count",

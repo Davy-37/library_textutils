@@ -13,6 +13,7 @@ import textutils
         textutils.snake_case,
         textutils.camel_case,
         textutils.kebab_case,
+        textutils.slugify,
         textutils.text_statistics,
     ],
 )
@@ -34,6 +35,7 @@ def test_public_api_is_exposed_through_the_package():
         "character_count",
         "kebab_case",
         "reverse",
+        "slugify",
         "snake_case",
         "text_statistics",
         "word_count",
