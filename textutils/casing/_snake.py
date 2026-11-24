@@ -1,47 +1,7 @@
 """Snake case conversion."""
 
-import re
-
 from textutils._validation import ensure_text
-
-_CAMEL_BOUNDARY = re.compile(r"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])")
-_WORD = re.compile(r"[^\W_]+")
-
-
-def _split_camel_case(text: str) -> str:
-    """Insert a space at each camelCase boundary of a text.
-
-    Parameters
-    ----------
-    text : str
-        Text to split, for example ``"HTTPServerError"``.
-
-    Returns
-    -------
-    str
-        The text with spaces at the boundaries, for example
-        ``"HTTP Server Error"``.
-    """
-    return _CAMEL_BOUNDARY.sub(" ", text)
-
-
-def _split_words(text: str) -> list[str]:
-    """Split a text into words, whatever the separators used.
-
-    Words can be separated by spaces, hyphens, underscores, punctuation or
-    camelCase boundaries.
-
-    Parameters
-    ----------
-    text : str
-        Text to split.
-
-    Returns
-    -------
-    list of str
-        The words of the text, without any separator.
-    """
-    return _WORD.findall(_split_camel_case(text))
+from textutils.casing._words import split_words
 
 
 def snake_case(text: str) -> str:
@@ -74,4 +34,4 @@ def snake_case(text: str) -> str:
     'parse_http_response'
     """
     ensure_text(text)
-    return "_".join(word.lower() for word in _split_words(text))
+    return "_".join(word.lower() for word in split_words(text))
