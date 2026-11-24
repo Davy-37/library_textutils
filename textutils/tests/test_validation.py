@@ -11,6 +11,7 @@ import textutils
         textutils.reverse,
         textutils.capitalize_words,
         textutils.snake_case,
+        textutils.camel_case,
         textutils.text_statistics,
     ],
 )
@@ -27,6 +28,7 @@ def test_error_message_names_the_received_type():
 
 def test_public_api_is_exposed_through_the_package():
     assert set(textutils.__all__) == {
+        "camel_case",
         "capitalize_words",
         "character_count",
         "reverse",
