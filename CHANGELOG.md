@@ -33,3 +33,7 @@ First stable release.
 ### Fixed
 - `snake_case()` collapses multiple spaces, hyphens and underscores.
 - The `text_statistics()` docstring example is a valid doctest.
+- `capitalize_words()` capitalizes words separated by tabs and line breaks.
+- `text_statistics()` no longer splits a sentence on a decimal point.
+- `text_statistics()` excludes every whitespace character from
+  `characters_no_spaces`.
