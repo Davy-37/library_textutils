@@ -12,6 +12,7 @@ A lightweight Python library for common text-processing operations.
 - Text reversal
 - Word capitalization
 - Snake case conversion
+- Camel case conversion
 - Text statistics
 
 ## Installation
@@ -38,13 +39,14 @@ count = word_count("The quick brown fox")
 print(count)  # 4
 ```
 
-Convert a text to snake case:
+Convert a text to another naming style:
 
 ```python
-from textutils import snake_case
+from textutils import camel_case, snake_case
 
 print(snake_case("User Profile Settings"))  # user_profile_settings
 print(snake_case("parseHTTPResponse"))   # parse_http_response
+print(camel_case("User Profile Settings"))  # userProfileSettings
 ```
 
 ## Development
