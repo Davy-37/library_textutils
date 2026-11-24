@@ -14,6 +14,8 @@ First stable release.
 ### Added
 - `word_count()`, `character_count()`, `reverse()` and `capitalize_words()`.
 - `snake_case()` to convert a text to snake case.
+- `camel_case()`, `kebab_case()` and `slugify()` to convert a text to camel case,
+  kebab case and URL slugs.
 - `text_statistics()` to compute statistics about a text.
 - `textutils.__version__`, read from the package metadata.
 - Pull request and issue templates, and a contributing guide.
