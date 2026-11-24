@@ -17,3 +17,14 @@ from textutils import capitalize_words
 )
 def test_capitalize_words(text, expected):
     assert capitalize_words(text) == expected
+
+
+@pytest.mark.parametrize(
+    "text, expected",
+    [
+        ("red\tblue", "Red\tBlue"),
+    ],
+)
+def test_capitalize_words_regression_tabs_and_line_breaks(text, expected):
+    """Every word is capitalized, whatever the whitespace separating them."""
+    assert capitalize_words(text) == expected
