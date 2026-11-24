@@ -7,13 +7,15 @@ project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-## [1.0.0] - 2026-10-22
+## [1.0.0] - 2026-11-24
 
 First stable release.
 
 ### Added
 - `word_count()`, `character_count()`, `reverse()` and `capitalize_words()`.
 - `snake_case()` to convert a text to snake case.
+- `camel_case()`, `kebab_case()` and `slugify()` to convert a text to camel case,
+  kebab case and URL slugs.
 - `text_statistics()` to compute statistics about a text.
 - `textutils.__version__`, read from the package metadata.
 - Pull request and issue templates, and a contributing guide.
@@ -31,3 +33,7 @@ First stable release.
 ### Fixed
 - `snake_case()` collapses multiple spaces, hyphens and underscores.
 - The `text_statistics()` docstring example is a valid doctest.
+- `capitalize_words()` capitalizes words separated by tabs and line breaks.
+- `text_statistics()` no longer splits a sentence on a decimal point.
+- `text_statistics()` excludes every whitespace character from
+  `characters_no_spaces`.
