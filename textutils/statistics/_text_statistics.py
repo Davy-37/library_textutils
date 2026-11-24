@@ -103,7 +103,7 @@ def text_statistics(text: str) -> dict[str, int | float | str | None]:
         Statistics of the text with the following keys:
 
         - ``characters`` (int): number of characters.
-        - ``characters_no_spaces`` (int): number of characters, spaces excluded.
+        - ``characters_no_spaces`` (int): number of characters, whitespace excluded.
         - ``words`` (int): number of words.
         - ``unique_words`` (int): number of distinct words.
         - ``sentences`` (int): number of sentences.
@@ -136,7 +136,7 @@ def text_statistics(text: str) -> dict[str, int | float | str | None]:
 
     return {
         "characters": len(text),
-        "characters_no_spaces": sum(1 for char in text if char != " "),
+        "characters_no_spaces": sum(1 for char in text if not char.isspace()),
         "words": len(words),
         "unique_words": len(set(words)),
         "sentences": _count_sentences(text),
